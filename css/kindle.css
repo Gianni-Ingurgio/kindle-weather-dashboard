@@ -52,13 +52,14 @@ html, body {
 
 #time {
     font-size: 86px;
+    white-space: nowrap;
 }
 
 #description {
     font-size: 48px;
 }
 
-/* ========================================================================= */
+/* ========================================================================== */
 
 #city {
     display: none;
@@ -88,7 +89,7 @@ html, body {
 /* ========================================================================= */
 
 #containerLastUpdate {
-    font-size: 10px;
+    font-size: 15px;
     position: fixed;
     bottom: 8px;
     left: 8px;

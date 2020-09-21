@@ -167,10 +167,10 @@ function processCurrentWeather(data) {
             .utcOffset(config.utcOffset)
             .format(config.timeFormat)
     );
-    
+
     var sunrise = moment(new Date(data.sys.sunrise * 1000)).utcOffset(config.utcOffset);
     var sunset = moment(new Date(data.sys.sunset * 1000)).utcOffset(config.utcOffset);
-    
+
     sunriseHour = sunrise.hour();
     sunsetHour = sunset.hour();
 
@@ -201,6 +201,7 @@ function processForecastWeather(data) {
             moment(new Date(forecast.dt * 1000))
                 .utcOffset(config.utcOffset)
                 .format(config.timeFormat)
+
         );
     }
 }
@@ -209,7 +210,7 @@ function processForecastWeather(data) {
 
 function refreshDateTime() {
     element("date").innerHTML = moment().format("dd, ll");
-    element("time").innerHTML = moment().format(config.timeFormat);
+    element("time").innerHTML = moment().format(config.dateFormat);
     setNightMode();
 }
 
@@ -400,7 +401,7 @@ function load() {
 
     refreshForecastWeather();
     setInterval(function() { refreshForecastWeather(); }, config.pollTime.forecastWeather);
-    
+
     refreshDateTime();
     setInterval(function() { refreshDateTime(); }, config.pollTime.dateTime);
 
@@ -409,7 +410,7 @@ function load() {
 
     // We just loaded the config, so we don't need to refresh right now
     setInterval(function() { refreshConfig(); }, config.pollTime.config);
-    
+
     clearScreenLoop();
     rotate();
     setRem("load");
@@ -446,7 +447,7 @@ function setNightMode() {
 
 function isNightMode() {
     var nightMode = config.nightMode || "off";
-    
+
     if (nightMode === "on") return true;
 
     if (nightMode === "auto") return isNight(sunsetHour, sunriseHour);
